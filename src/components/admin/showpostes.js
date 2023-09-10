@@ -4,7 +4,7 @@ import Viewpost from './viewpost';
 import Createpost from './createpost';
 import { api } from '../../config';
 
-const Showposted = ({ data, admin }) => {
+const Showposted = ({ data, admin, username }) => {
   const [blogspost, setBlogs] = useState([]);
   const [post, findPost] = useState([]);
   const [view, setView] = useState(false);
@@ -67,7 +67,7 @@ const Showposted = ({ data, admin }) => {
                       <div className="text-center">
                       <h5 class="card-title text-secondary">{value.blogname}</h5><hr/>
                         <img src={api+value.image} style={{ width: '100px' }} />
-                                 <p>{value.tagline}</p>
+                             <div>  <hr/> {!admin ? <p><strong>Aurthor</strong> : {value.by}</p>:<p>{value.tagline}</p>}<hr/></div>
                       {admin ? (
                         <button
                           type="button"
@@ -121,6 +121,7 @@ const Showposted = ({ data, admin }) => {
             back={() => {
               setEdit(false);
             }}
+            user = {username}
           />
         );
       }
@@ -130,6 +131,7 @@ const Showposted = ({ data, admin }) => {
             back={() => {
               setCreate(false);
             }}
+            user = {username}
           />
         );
       }

@@ -5,7 +5,7 @@ import { api } from '../../config';
 import { getPosts } from '../redux/getBlogsSlice';
 import { useDispatch } from 'react-redux';
 
-const Createpost = ({ updatedata = false, back }) => {
+const Createpost = ({ updatedata = false, back, user }) => {
   const [data, setData] = useState({});
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
@@ -31,6 +31,7 @@ const Createpost = ({ updatedata = false, back }) => {
       formdata.append("tagline", tag)
       formdata.append("description",des)
       formdata.append("image",img)
+      formdata.append("by",user)
       axios.post(api+"addpost",formdata,
       {
         headers : {"Content-Type" : "multipart/formdata"}
@@ -55,6 +56,7 @@ const Createpost = ({ updatedata = false, back }) => {
       formdata.append("tagline", tag)
       formdata.append("description",des)
       formdata.append("image",img)
+      formdata.append("by",usrname)
       axios.put(api+"updatepost/"+updatedata._id,formdata,
       {
         headers : {"Content-Type" : "multipart/formdata"}

@@ -24,6 +24,16 @@ const Signup = () => {
   const handelcPassword = (cpass) => {
     user.conformpassword = cpass;
   };
+  const handelchecked = (box)=>{
+    if(box)
+    {
+      user.checked = true;
+    }
+    else
+    {
+      user.checked = false;
+    }
+  }
   const signup = () => {
     if (!(user.username && user.username.trim())) {
       iserror.status = true;
@@ -65,12 +75,14 @@ const Signup = () => {
         theme: 'dark',
       });
     }
+    let role = user.checked ? "admin" : "user"
     if (!iserror.status) {
       setUser(user);
       let userdatas = {
        "username" : user.username,
        "email": user.email,
-       "password" : user.password
+       "password" : user.password,
+       "role" : role
       }
       axios
         .post(api+"signup", userdatas)
@@ -147,6 +159,16 @@ const Signup = () => {
                   handelcPassword(e.target.value);
                 }}
               />{' '}
+            </div>
+            <br />
+            <div>
+              {' '}
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  handelchecked(e.target.checked);
+                }}
+              /> Create accout to post blogs{' '}
             </div>
             <br />
             <div>
