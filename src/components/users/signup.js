@@ -168,7 +168,7 @@ const Signup = () => {
                 onChange={(e) => {
                   handelchecked(e.target.checked);
                 }}
-              /> Create accout to post blogs{' '}
+              /> Create Writer Account{' '}
             </div>
             <br />
             <div>

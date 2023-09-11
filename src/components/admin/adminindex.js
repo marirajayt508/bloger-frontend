@@ -32,6 +32,7 @@ const Adminindex = () => {
     const role = jwt_decode(aut).role;
     const name = jwt_decode(aut).username;
     const email = jwt_decode(aut).email;
+    
   const authen = () => {
     if (!(aut)) {
       navigate('/');

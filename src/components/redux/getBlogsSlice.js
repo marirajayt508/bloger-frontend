@@ -3,8 +3,9 @@ import axios from 'axios';
 import {api} from "../../config"
 
 const getPosts = createAsyncThunk('posts/getPosts', async () => {
+  let token = sessionStorage.getItem("aut")
   const res = axios
-    .get(api+"getallpost")
+    .get(api+"getallpost?aut="+token)
     .then((d) => d.data);
   return res;
 });

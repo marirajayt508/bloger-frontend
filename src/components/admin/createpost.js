@@ -56,7 +56,7 @@ const Createpost = ({ updatedata = false, back, user }) => {
       formdata.append("tagline", tag)
       formdata.append("description",des)
       formdata.append("image",img)
-      formdata.append("by",usrname)
+      formdata.append("by",username)
       axios.put(api+"updatepost/"+updatedata._id,formdata,
       {
         headers : {"Content-Type" : "multipart/formdata"}

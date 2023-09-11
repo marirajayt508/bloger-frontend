@@ -41,7 +41,7 @@ const Showposted = ({ data, admin, username }) => {
     return !view ? (
       <div class="card container p-3">
         <div>
-          <strong>All Blogs</strong>
+          <strong>{!admin? "All Posts" : "My Posts"}</strong>
           <span style={{ float: 'right' }}>
             {' '}
             {admin ? (
@@ -56,18 +56,20 @@ const Showposted = ({ data, admin, username }) => {
           </span>
         </div>
         <hr />
-        <div class="row p-3">
+        <div class="row p-1">
           {blogspost && blogspost.length ? (
             blogspost.map((value, index) => {
+              // class="col-lg-3 col-md-12 mb-4 mb-lg-0 p-3"
               return (
-                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0 p-3">
+                <div >
                   <div class="card" style={{ width: '100%' }}>
                     <div class="card-body">
-                     
-                      <div className="text-center">
-                      <h5 class="card-title text-secondary">{value.blogname}</h5><hr/>
-                        <img src={api+value.image} style={{ width: '100px' }} />
-                             <div>  <hr/> {!admin ? <p><strong>Aurthor</strong> : {value.by}</p>:<p>{value.tagline}</p>}<hr/></div>
+                      <div >
+                     <div><strong><code>{value.blogname.toUpperCase()}</code></strong>{!admin?<h5 class="card-title text-secondary p-1" style={{float : "right"}}><span  className='bg-primary text-light p-2 ' style={{"border-radius" : "100%"}}>{value.by.charAt(0).toUpperCase()}</span> {value.by.toUpperCase()}</h5>:null}</div>
+                       <div className="text-center"> 
+                       {!admin ?<img src={api+value.image} style={{ width: '50%' }} />: null}
+                       </div><div>{!admin? value.tagline:null}
+                       <div style={{float : "right"}}>
                       {admin ? (
                         <button
                           type="button"
@@ -89,6 +91,8 @@ const Showposted = ({ data, admin, username }) => {
                       >
                         View
                       </button>
+                      </div>
+                      </div>
                       </div>  
                     </div>
                   </div>
