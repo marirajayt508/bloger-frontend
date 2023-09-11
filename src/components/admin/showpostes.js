@@ -13,9 +13,11 @@ const Showposted = ({ data, admin, username }) => {
   const [create, setCreate] = useState(false);
   const [viewdata, setViewdata] = useState([]);
   useEffect(() => {
-    setBlogs(data.datas);
-  });
-
+    postData()
+  },[]);
+const postData = ()=>{
+  setBlogs(data.datas);
+}
   const adminRoute = (blogePost) => {
     setEdit(true);
     setEditdata(blogePost);
@@ -29,9 +31,13 @@ const Showposted = ({ data, admin, username }) => {
       findPost([...temp]);
     } else {
       findPost([]);
+      postData()
     }
   };
-
+const search = ()=>{
+  setBlogs(post)
+  console.log(blogspost)
+}
   const viewPage = (status, index) => {
     setView(status);
     setViewdata(blogspost[index]);
@@ -113,6 +119,11 @@ const Showposted = ({ data, admin, username }) => {
         }}
         datas={viewdata}
         admin = {admin}
+       clearpost = {
+        ()=>{
+          findPost([]);
+        }
+       }
       />
     );
   };
@@ -151,15 +162,20 @@ const Showposted = ({ data, admin, username }) => {
         <div className="row ">
           <div className="col-md-2 p-3">
             <strong>Find Post</strong>
+            <br/>
             <input
               type="text"
               placeholder="Enter Title"
               disabled = { blogspost && blogspost.length ? false : true}
+              style={{width:"100%"}}
               onChange={(e) => {
-                findvalue(e.target.value);
-                
+                findvalue(e.target.value);  
               }}
-            />
+            />           
+              <button className="btn btn-primary" disabled={!post.length ? true : false} onClick={()=>{
+                search()
+              }}>Search</button>
+            <hr/>
             {post.length ? (
               <div className="p-3">
                 <strong>Releated Post</strong>
