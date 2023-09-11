@@ -13,11 +13,9 @@ const Showposted = ({ data, admin, username }) => {
   const [create, setCreate] = useState(false);
   const [viewdata, setViewdata] = useState([]);
   useEffect(() => {
-    postData()
-  },[]);
-const postData = ()=>{
-  setBlogs(data.datas);
-}
+    setBlogs(data.datas);
+  });
+
   const adminRoute = (blogePost) => {
     setEdit(true);
     setEditdata(blogePost);
@@ -31,13 +29,9 @@ const postData = ()=>{
       findPost([...temp]);
     } else {
       findPost([]);
-      postData()
     }
   };
-const search = ()=>{
-  setBlogs(post)
-  console.log(blogspost)
-}
+
   const viewPage = (status, index) => {
     setView(status);
     setViewdata(blogspost[index]);
@@ -62,7 +56,7 @@ const search = ()=>{
           </span>
         </div>
         <hr />
-        <div class="row p-1">
+        <div class="row p-3">
           {blogspost && blogspost.length ? (
             blogspost.map((value, index) => {
               // class="col-lg-3 col-md-12 mb-4 mb-lg-0 p-3"
@@ -73,8 +67,8 @@ const search = ()=>{
                       <div >
                      <div><strong><code>{value.blogname.toUpperCase()}</code></strong>{!admin?<h5 class="card-title text-secondary p-1" style={{float : "right"}}><span  className='bg-primary text-light p-2 ' style={{"border-radius" : "100%"}}>{value.by.charAt(0).toUpperCase()}</span> {value.by.toUpperCase()}</h5>:null}</div>
                        <div className="text-center"> 
-                       {!admin ?<img src={api+value.image} style={{ width: '50%' }} />: null}
-                       </div><div>{!admin? value.tagline:null}
+                       {!admin ?<img src={api+value.image} style={{ width: '50%' }} />: null}<br/><br/>
+                       </div><div>{!admin? value.tagline:null}<br/>
                        <div style={{float : "right"}}>
                       {admin ? (
                         <button
@@ -102,6 +96,7 @@ const search = ()=>{
                       </div>  
                     </div>
                   </div>
+                  <br/>
                 </div>
               );
             })
@@ -119,11 +114,9 @@ const search = ()=>{
         }}
         datas={viewdata}
         admin = {admin}
-       clearpost = {
-        ()=>{
-          findPost([]);
-        }
-       }
+        clearsearch = {()=>{
+          findPost([])
+        }}
       />
     );
   };
@@ -172,10 +165,6 @@ const search = ()=>{
                 findvalue(e.target.value);  
               }}
             />           
-              <button className="btn btn-primary" disabled={!post.length ? true : false} onClick={()=>{
-                search()
-              }}>Search</button>
-            <hr/>
             {post.length ? (
               <div className="p-3">
                 <strong>Releated Post</strong>

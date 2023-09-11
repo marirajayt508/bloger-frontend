@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '../redux/getBlogsSlice';
 import jwtDecode from 'jwt-decode';
 
-const Viewpost = ({ view, datas, admin=false,clearpost}) => {
+const Viewpost = ({ view, datas, admin=false,clearsearch}) => {
   const [cmd, setCmd] = useState([]);
   const [ncmd, setNcmd] = useState('');
   useEffect(() => {
@@ -56,7 +56,7 @@ const name = jwtDecode(sessionStorage.getItem('aut')).username
         </div>
         <hr />
         <div className="text-center">
-          <img src={api+datas.image} style={{ width: '20%' }} />
+          <img src={api+datas.image} style={{ width: '70%' }} />
         </div>
         <hr />
         <div><strong><u>About</u></strong><p>{datas.description}</p></div>
@@ -94,7 +94,7 @@ const name = jwtDecode(sessionStorage.getItem('aut')).username
         <div className="text-center">
           <button className="btn btn-info" onClick={() =>{ view(false)
           dispatch(getPosts())
-          clearpost()
+          clearsearch()
           }}>
             Back
           </button> &nbsp; {admin?
