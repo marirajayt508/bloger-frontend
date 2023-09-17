@@ -56,7 +56,7 @@ const name = jwtDecode(sessionStorage.getItem('aut')).username
         </div>
         <hr />
         <div className="text-center">
-          a href={api+value.image} className="btn btn-primary">Download</a>
+          <a href={api+value.image} className="btn btn-primary">Download</a>
         </div>
         <hr />
         <div><strong><u>About</u></strong><p>{datas.description}</p></div>
