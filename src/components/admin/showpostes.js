@@ -67,7 +67,7 @@ const Showposted = ({ data, admin, username }) => {
                       <div >
                      <div><strong><code>{value.blogname.toUpperCase()}</code></strong>{!admin?<h5 class="card-title text-secondary p-1" style={{float : "right"}}><span  className='bg-primary text-light p-2 ' style={{"border-radius" : "100%"}}>{value.by.charAt(0).toUpperCase()}</span> {value.by.toUpperCase()}</h5>:null}</div>
                        <div className="text-center"> 
-                       {!admin ?<img src={api+value.image} style={{ width: '50%' }} />: null}<br/><br/>
+                       {!admin ?<a href={api+value.image} className="btn btn-primary">Download File</a>: null}<br/><br/>
                        </div><div>{!admin? value.tagline:null}<br/>
                        <div style={{float : "right"}}>
                       {admin ? (
