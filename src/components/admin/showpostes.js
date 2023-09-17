@@ -22,7 +22,7 @@ const Showposted = ({ data, admin, username }) => {
   };
   const findvalue = (value) => {
     let temp = blogspost.filter((res) => {
-      return res.blogname.toLowerCase().includes(value);
+      return res.blogname.toLowerCase().includes(value.toLowerCase());
     });
 
     if (value) {
