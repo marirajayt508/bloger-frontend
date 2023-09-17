@@ -69,14 +69,14 @@ const Createpost = ({ updatedata = false, back, user }) => {
       })
   };
   const setImgFnc = (images)=>{
-    if(images[0].type.includes("image"))
+    if(images[0])
     {
       let preview = URL.createObjectURL(images[0])
       setpImg(preview)
       setImg(images[0])
     }
 else{
-toast.error("Chose image alone")
+toast.error("Chose Image")
 }
   }
   return (
